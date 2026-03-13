@@ -1,7 +1,11 @@
 public with sharing class PricebookSelector extends fflib_SObjectSelector {
+
+    public PricebookSelector(){
+        
+    }
     
     public List<Schema.SObjectField> getSObjectFieldList(){
-        return new List<Schama.SObjectField>{Pricebook.Id, Pricebook2.IsStarndard};
+        return new List<Schema.SObjectField>{Pricebook2.Id, Pricebook2.isStandard};
     
     }
     public Schema.SObjectType getSObjectType(){

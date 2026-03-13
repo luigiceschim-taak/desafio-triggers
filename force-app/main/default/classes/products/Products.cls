@@ -7,6 +7,6 @@ public class Products extends fflib_SObjectDomain {
 
     public override void onAfterInsert() {
         // O Domínio delega a tarefa complexa para o Service
-        ProductsService.createStandardPricebookEntries((List<Product2>) Records);
+        ProductTriggerHandler.createPricebookEntriesForStandard((List<Product2>) Records);
     }
 }

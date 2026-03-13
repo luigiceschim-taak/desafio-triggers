@@ -8,15 +8,17 @@ public with sharing class ProductTriggerHandler {
         );
 
         List<PricebookEntry> pbeList = new List<PricebookEntry>();
+
+        PricebookSelector pricebookSelector = new PricebookSelector();
        
-        Id standardPricebookId = new PricebookSelector.selectStandardPricebook();
+        Pricebook2 standardPricebookId = pricebookSelector.selectStandardPricebook();
         List<CurrencyType> activeCurrencies = [SELECT IsoCode FROM CurrencyType WHERE IsActive = true];
 
         for(Product2 p : newProducts) {
             for(CurrencyType c : activeCurrencies){
-                pbeList.add(
+                uow.registerNew(
                     new PricebookEntry(
-                        Pricebook2Id = standardPricebookId,
+                        Pricebook2Id = standardPricebookId.Id,
                         Product2Id = p.Id,
                         UnitPrice = 0,
                         CurrencyIsoCode = c.IsoCode,
